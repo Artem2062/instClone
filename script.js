@@ -186,9 +186,7 @@ if (document.title == "profile") {
         if (xhrs.readyState == 4 && xhrs.status == 200) {
             let arr = JSON.parse(xhrs.responseText);
             let arr2 = JSON.parse(xhr.responseText);
-            
             let l = arr.length
-            console.log(arr)
             if (arr[l - 1].islogin == 1) {
                 let templateCode = `
                 <div class="boxb">

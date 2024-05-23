@@ -15,21 +15,14 @@ body {
     justify-content: center;
     padding-top: 6%;
 }
-
-ul {
-    display: flex;
-    margin: 0;
-}
-
 a {
     list-style-type: none;
-    margin: 30%;
+    margin: 7%;
     text-decoration: none;
     color: antiquewhite;
     font-size: 22px;
     font-weight: 500;
 }
-
 .boxic {
     margin-left: 15%;
     margin-right: 15%;
@@ -43,7 +36,6 @@ a {
     padding: 5%;
     border-radius: 20px;
 }
-
 .cool{
     width:100%;
     border:2px solid #aaa;
@@ -58,36 +50,7 @@ a {
     border-color:dodgerBlue;
     box-shadow:0 0 8px 0 dodgerBlue;
 }
-.temi3{
-    border: 1px solid rgb(107, 107, 107);
-    margin-left: 15%;
-    margin-right: 15%;  
-    width: 100%;
-    padding: 10px;
-    list-style: none;
-    margin-bottom: 5px;
-    text-align: center;
-    border-radius: 4px;
-    color: rgba(66, 66, 66, 0.9);
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-    cursor: pointer;
-    transition: 300ms;
-    background: #f0e54a;
-    box-shadow: 0px 5px #aba232, 0px 10px 10px rgba(0,0,0,0.25);
-}
-.temi3:hover {
-    transform: translateY(5px);
-    box-shadow: 0px 0px transparent, 0px 5px 10px rgba(0,0,0,0.25);
-}
 
-a{
-    list-style-type: none;
-    margin: 20%;
-    text-decoration: none;
-    color: antiquewhite;
-    font-size: 22px;
-    font-weight: 500;
-}
 ul{
     display: flex;
     margin: 0;
@@ -108,6 +71,9 @@ ul{
     border: 1px solid gray;
     border-radius: 20px;
     color: black;
+    width: 25%;
+    margin-left: 1%;
+    margin-bottom: 1%;
     font-size: 20px;
 }
 
@@ -117,11 +83,6 @@ ul{
     justify-content: space-evenly;
     align-content: space-evenly;
     margin-top: 20px;
-}
-.card{
-    width: 25%;
-    margin-left: 1%;
-    margin-bottom: 1%;
 }
 .cardText{
     margin-top: 2px;
@@ -139,10 +100,7 @@ ul{
     border-radius: 50%;
     margin-right: 2%;
 }
-.heart1{
-    width: 40px;
-    height: 40px;
-}
+
 .profileBox{
     height: 5%;
     background-color: red;

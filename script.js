@@ -1,5 +1,4 @@
 'use strict'
-
 let xhr = new XMLHttpRequest();
 xhr.open('GET', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=3a51e0f84d908ebc5cf979fd2b0c0c46', true);
 xhr.send();
@@ -25,7 +24,6 @@ if (document.title == "main") {
                 </div>
             </div>`
                 let template = Handlebars.compile(templateCode);
-
                 if (document.title == 'main') {
                     let productsContainer = document.querySelector('#box1');
                     productsContainer.innerHTML = '';
@@ -45,7 +43,7 @@ if (document.title == "main") {
 }
 if (document.title == "add") {
     send.addEventListener('click', function () {
-        
+
         if (xhr.readyState == 4 && xhr.status == 200) {
             let photosArr = JSON.parse(xhr.responseText);
             let arr = JSON.parse(xhrs.responseText);
@@ -84,16 +82,12 @@ if (document.title == "add") {
 
     });
 }
-
-
-
 let xhrr = new XMLHttpRequest();
 xhrr.open('GET', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=7f4ab8c7aee22a08bcbf016236c6c4c1', true);
 xhrr.send();
 let flag1 = true
 if (document.title == "register") {
     sendRegister.addEventListener('click', function () {
-
         let flag1 = true
         if (xhrr.readyState == 4 && xhrr.status == 200) {
 
@@ -105,7 +99,6 @@ if (document.title == "register") {
                 password: '',
                 photo: ''
             }
-
             for (let i in usersArr) {
                 if (aklogin.value == usersArr[i].login) {
                     akname.value = ''
@@ -120,7 +113,7 @@ if (document.title == "register") {
                 newUser.name = akname.value;
                 newUser.login = aklogin.value;
                 newUser.password = akpassword.value;
-                newUser.photo=akphoto.value
+                newUser.photo = akphoto.value
                 usersArr.push(newUser);
                 let xhrSenderr = new XMLHttpRequest();
                 xhrSenderr.open('PUT', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=7f4ab8c7aee22a08bcbf016236c6c4c1', true);
@@ -152,6 +145,7 @@ if (document.title == "enter") {
             let photosArrappend = JSON.parse(xhrs.responseText);
             for (let i in photosArrchek) {
                 if (aklogin2.value == photosArrchek[i].login && akpassword2.value == photosArrchek[i].password) {
+                    
                     flag1 = false
                     let chek = {
                         profilephoto: '',
@@ -159,12 +153,13 @@ if (document.title == "enter") {
                         islogin: '1'
                     }
                     chek.login = aklogin2.value;
-                    chek.profilephoto=photosArrchek[photosArrchek.length-1].photo
+                    chek.profilephoto = photosArrchek[photosArrchek.length - 1].photo
                     photosArrappend.push(chek);
                     let xhrsSender = new XMLHttpRequest();
                     xhrsSender.open('PUT', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=3d2b887034817ec8ee0c124c06330648', true);
                     xhrsSender.setRequestHeader("Content-type", "application/json");
                     xhrsSender.send(JSON.stringify(photosArrappend));
+                    
                     alert('Вы успешно вошли в аккаунт')
                     break
                 }
@@ -174,26 +169,23 @@ if (document.title == "enter") {
                     break
                 }
             }
-
             if (flag1 == true) {
                 alert("Такого аккаунта не существует")
             }
         }
     })
+    
 }
 if (document.title == "profile") {
     xhrs.addEventListener('readystatechange', function () {
+        let flag2=true
         if (xhrs.readyState == 4 && xhrs.status == 200) {
             let arr = JSON.parse(xhrs.responseText);
             let arr2 = JSON.parse(xhr.responseText);
             let l = arr.length
             if (arr[l - 1].islogin == 1) {
                 let templateCode = `
-                <div class="boxb">
-                    <div class="profilebox">
-                        <img src="${arr[l-1].profilephoto}" class="profilephot">
-                        <p class="cardText" style="margin-left:3%;color:black;font-size:25px">Владелец аккаунта: ${arr[l-1].login}</p>
-                    </div>
+                <div class="boxb" id="boxb2">
                 <div class="card">
                     <img class="image" src="{{photoUrl}}">
                     <div style="display:flex; margin-top:2%;">
@@ -208,18 +200,25 @@ if (document.title == "profile") {
                         </div>
                         
                     </div>
+                </div>
+                </div>
+                `
+                let templateCode2=`
+                <div class="profilebox">
+                    <img src="${arr[l - 1].profilephoto}" class="profilephot">
+                    <p class="cardText" style="margin-left:3%;color:black;font-size:25px">Владелец аккаунта: ${arr[l - 1].login}</p>
                 </div>`
                 let template = Handlebars.compile(templateCode);
+                let template2 = Handlebars.compile(templateCode2);
                 let productsContainer2 = document.querySelector('#boxb');
                 productsContainer2.innerHTML = '';
+                productsContainer2.innerHTML += template2();
                 for (let photo of arr2) {
                     if (photo.userlogin == arr[l - 1].login) {
                         productsContainer2.innerHTML += template(photo);
                     }
                 }
-
             }
-
         }
     })
 }

@@ -1,6 +1,6 @@
 'use strict'
 let xhr = new XMLHttpRequest();
-xhr.open('GET', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=3a51e0f84d908ebc5cf979fd2b0c0c46', true);
+xhr.open('GET', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=12695641e72aa83884dcddeb44911eae', true);
 xhr.send();
 if (document.title == "main") {
     xhr.addEventListener('readystatechange', function () {
@@ -65,7 +65,7 @@ if (document.title == "add") {
             } else {
                 photosArr.push(newPhoto);
                 let xhrSender = new XMLHttpRequest();
-                xhrSender.open('PUT', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=3a51e0f84d908ebc5cf979fd2b0c0c46', true);
+                xhrSender.open('PUT', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=12695641e72aa83884dcddeb44911eae', true);
                 xhrSender.setRequestHeader("Content-type", "application/json");
                 xhrSender.send(JSON.stringify(photosArr));
                 xhrSender.addEventListener('readystatechange', function () {
@@ -83,7 +83,7 @@ if (document.title == "add") {
     });
 }
 let xhrr = new XMLHttpRequest();
-xhrr.open('GET', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=7f4ab8c7aee22a08bcbf016236c6c4c1', true);
+xhrr.open('GET', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=35067e1deba04f62c561a450bb58eeb6', true);
 xhrr.send();
 let flag1 = true
 if (document.title == "register") {
@@ -116,7 +116,7 @@ if (document.title == "register") {
                 newUser.photo = akphoto.value
                 usersArr.push(newUser);
                 let xhrSenderr = new XMLHttpRequest();
-                xhrSenderr.open('PUT', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=7f4ab8c7aee22a08bcbf016236c6c4c1', true);
+                xhrSenderr.open('PUT', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=35067e1deba04f62c561a450bb58eeb6', true);
                 xhrSenderr.setRequestHeader("Content-type", "application/json");
                 xhrSenderr.send(JSON.stringify(usersArr));
                 xhrSenderr.addEventListener('readystatechange', function () {
@@ -135,7 +135,7 @@ if (document.title == "register") {
     });
 }
 let xhrs = new XMLHttpRequest();
-xhrs.open('GET', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=3d2b887034817ec8ee0c124c06330648', true);
+xhrs.open('GET', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=1c221f00b6f0c7ca85ead9ddfdabedd3', true);
 xhrs.send();
 if (document.title == "enter") {
     sendEnter.addEventListener('click', function () {
@@ -156,7 +156,7 @@ if (document.title == "enter") {
                     chek.profilephoto = photosArrchek[photosArrchek.length - 1].photo
                     photosArrappend.push(chek);
                     let xhrsSender = new XMLHttpRequest();
-                    xhrsSender.open('PUT', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=3d2b887034817ec8ee0c124c06330648', true);
+                    xhrsSender.open('PUT', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=1c221f00b6f0c7ca85ead9ddfdabedd3', true);
                     xhrsSender.setRequestHeader("Content-type", "application/json");
                     xhrsSender.send(JSON.stringify(photosArrappend));
                     
@@ -178,8 +178,14 @@ if (document.title == "enter") {
 }
 if (document.title == "profile") {
     xhrs.addEventListener('readystatechange', function () {
+        if(xhrs.status != 200){
+            location.reload()
+        }
+        if(xhr.status != 200){
+            location.reload()
+        }
         let flag2=true
-        if (xhrs.readyState == 4 && xhrs.status == 200) {
+        if (xhrs.readyState == 4 && xhrs.status == 200 && xhr.readyState == 4 && xhr.status == 200) {
             let arr = JSON.parse(xhrs.responseText);
             let arr2 = JSON.parse(xhr.responseText);
             let l = arr.length

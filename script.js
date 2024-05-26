@@ -161,7 +161,7 @@ if (document.title == "enter") {
                     xhrsSender.setRequestHeader("Content-type", "application/json");
                     xhrsSender.send(JSON.stringify(photosArrappend));
                     localStorage.clear()
-                    a=0
+                    localStorage.setItem('true', 1)
                     alert('Вы успешно вошли в аккаунт')
                     window.location.href = 'index3.html';
                     break
@@ -192,14 +192,13 @@ if (document.title == "profile") {
         if (xhrs.readyState == 4 && xhrs.status == 200 && xhr.readyState == 4 && xhr.status == 200) {
             let arr = JSON.parse(xhrs.responseText);
             let arr2 = JSON.parse(xhr.responseText);
-            if(a==0){
+            if(localStorage.getItem('true')==1){
                 localStorage.clear()
-                const b=arr.length
-                localStorage.setItem('length', b)
-                a=1
-            }   
+                localStorage.setItem('true', 0)
+                localStorage.setItem('length', arr.length)
+            }
            
-            console.log(localStorage.getItem('length'))
+            console.log(localStorage.getItem('length'),a)
             let templateCode = `
                 <div class="boxb" id="boxb2">
                 <div class="card">

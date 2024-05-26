@@ -1,8 +1,7 @@
 'use strict'
 let xhr = new XMLHttpRequest();
-xhr.open('GET', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=12695641e72aa83884dcddeb44911eae', true);
+xhr.open('GET', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=f7999363a3858932b920c811aa42e9e8', true);
 xhr.send();
-var l
 if (document.title == "main") {
     xhr.addEventListener('readystatechange', function () {
         if (xhr.readyState == 4) {
@@ -44,7 +43,6 @@ if (document.title == "main") {
 }
 if (document.title == "add") {
     send.addEventListener('click', function () {
-
         if (xhr.readyState == 4 && xhr.status == 200) {
             let photosArr = JSON.parse(xhr.responseText);
             let arr = JSON.parse(xhrs.responseText);
@@ -66,7 +64,7 @@ if (document.title == "add") {
             } else {
                 photosArr.push(newPhoto);
                 let xhrSender = new XMLHttpRequest();
-                xhrSender.open('PUT', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=12695641e72aa83884dcddeb44911eae', true);
+                xhrSender.open('PUT', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=f7999363a3858932b920c811aa42e9e8', true);
                 xhrSender.setRequestHeader("Content-type", "application/json");
                 xhrSender.send(JSON.stringify(photosArr));
                 xhrSender.addEventListener('readystatechange', function () {
@@ -84,16 +82,14 @@ if (document.title == "add") {
     });
 }
 let xhrr = new XMLHttpRequest();
-xhrr.open('GET', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=35067e1deba04f62c561a450bb58eeb6', true);
+xhrr.open('GET', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=9db2df8a3f6d965e109a3fffee30dd63', true);
 xhrr.send();
 let flag1 = true
 if (document.title == "register") {
     sendRegister.addEventListener('click', function () {
         let flag1 = true
         if (xhrr.readyState == 4 && xhrr.status == 200) {
-
             let usersArr = JSON.parse(xhrr.responseText);
-            console.log(usersArr)
             let newUser = {
                 name: '',
                 login: '',
@@ -117,7 +113,7 @@ if (document.title == "register") {
                 newUser.photo = akphoto.value
                 usersArr.push(newUser);
                 let xhrSenderr = new XMLHttpRequest();
-                xhrSenderr.open('PUT', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=35067e1deba04f62c561a450bb58eeb6', true);
+                xhrSenderr.open('PUT', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=9db2df8a3f6d965e109a3fffee30dd63', true);
                 xhrSenderr.setRequestHeader("Content-type", "application/json");
                 xhrSenderr.send(JSON.stringify(usersArr));
                 xhrSenderr.addEventListener('readystatechange', function () {
@@ -136,7 +132,7 @@ if (document.title == "register") {
     });
 }
 let xhrs = new XMLHttpRequest();
-xhrs.open('GET', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=1c221f00b6f0c7ca85ead9ddfdabedd3', true);
+xhrs.open('GET', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=bf2f21228e152d9c28420c137a3f5525', true);
 xhrs.send();
 if (document.title == "enter") {
     sendEnter.addEventListener('click', function () {
@@ -146,7 +142,6 @@ if (document.title == "enter") {
             let photosArrappend = JSON.parse(xhrs.responseText);
             for (let i in photosArrchek) {
                 if (aklogin2.value == photosArrchek[i].login && akpassword2.value == photosArrchek[i].password) {
-
                     flag1 = false
                     let chek = {
                         profilephoto: '',
@@ -154,10 +149,10 @@ if (document.title == "enter") {
                         islogin: '1'
                     }
                     chek.login = aklogin2.value;
-                    chek.profilephoto = photosArrchek[photosArrchek.length - 1].photo
+                    chek.profilephoto = photosArrchek[i].photo
                     photosArrappend.push(chek);
                     let xhrsSender = new XMLHttpRequest();
-                    xhrsSender.open('PUT', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=1c221f00b6f0c7ca85ead9ddfdabedd3', true);
+                    xhrsSender.open('PUT', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=bf2f21228e152d9c28420c137a3f5525', true);
                     xhrsSender.setRequestHeader("Content-type", "application/json");
                     xhrsSender.send(JSON.stringify(photosArrappend));
                     localStorage.clear()
@@ -177,9 +172,8 @@ if (document.title == "enter") {
             }
         }
     })
-
 }
-var a=0
+var a = 0
 if (document.title == "profile") {
     xhrs.addEventListener('readystatechange', function () {
         if (xhrs.status != 200) {
@@ -192,13 +186,11 @@ if (document.title == "profile") {
         if (xhrs.readyState == 4 && xhrs.status == 200 && xhr.readyState == 4 && xhr.status == 200) {
             let arr = JSON.parse(xhrs.responseText);
             let arr2 = JSON.parse(xhr.responseText);
-            if(localStorage.getItem('true')==1){
+            if (localStorage.getItem('true') == 1) {
                 localStorage.clear()
                 localStorage.setItem('true', 0)
                 localStorage.setItem('length', arr.length)
             }
-           
-            console.log(localStorage.getItem('length'),a)
             let templateCode = `
                 <div class="boxb" id="boxb2">
                 <div class="card">
@@ -228,13 +220,11 @@ if (document.title == "profile") {
             let productsContainer2 = document.querySelector('#boxb');
             productsContainer2.innerHTML = '';
             productsContainer2.innerHTML += template2();
-            
             for (let photo of arr2) {
                 if (photo.userlogin == arr[localStorage.getItem('length') - 1].login) {
                     productsContainer2.innerHTML += template(photo);
                 }
             }
-
         }
     })
 }

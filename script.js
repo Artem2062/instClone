@@ -2,6 +2,7 @@
 let xhr = new XMLHttpRequest();
 xhr.open('GET', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=12695641e72aa83884dcddeb44911eae', true);
 xhr.send();
+var l
 if (document.title == "main") {
     xhr.addEventListener('readystatechange', function () {
         if (xhr.readyState == 4) {
@@ -145,7 +146,7 @@ if (document.title == "enter") {
             let photosArrappend = JSON.parse(xhrs.responseText);
             for (let i in photosArrchek) {
                 if (aklogin2.value == photosArrchek[i].login && akpassword2.value == photosArrchek[i].password) {
-                    
+
                     flag1 = false
                     let chek = {
                         profilephoto: '',
@@ -159,8 +160,10 @@ if (document.title == "enter") {
                     xhrsSender.open('PUT', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=1c221f00b6f0c7ca85ead9ddfdabedd3', true);
                     xhrsSender.setRequestHeader("Content-type", "application/json");
                     xhrsSender.send(JSON.stringify(photosArrappend));
-                    
+                    localStorage.clear()
+                    a=0
                     alert('Вы успешно вошли в аккаунт')
+                    window.location.href = 'index3.html';
                     break
                 }
                 if (aklogin2.value == photosArrchek[i].login && akpassword2.value != photosArrchek[i].password) {
@@ -174,23 +177,30 @@ if (document.title == "enter") {
             }
         }
     })
-    
+
 }
+var a=0
 if (document.title == "profile") {
     xhrs.addEventListener('readystatechange', function () {
-        if(xhrs.status != 200){
+        if (xhrs.status != 200) {
             location.reload()
         }
-        if(xhr.status != 200){
+        if (xhr.status != 200) {
             location.reload()
         }
-        let flag2=true
+        let flag2 = true
         if (xhrs.readyState == 4 && xhrs.status == 200 && xhr.readyState == 4 && xhr.status == 200) {
             let arr = JSON.parse(xhrs.responseText);
             let arr2 = JSON.parse(xhr.responseText);
-            let l = arr.length
-            if (arr[l - 1].islogin == 1) {
-                let templateCode = `
+            if(a==0){
+                localStorage.clear()
+                const b=arr.length
+                localStorage.setItem('length', b)
+                a=1
+            }   
+           
+            console.log(localStorage.getItem('length'))
+            let templateCode = `
                 <div class="boxb" id="boxb2">
                 <div class="card">
                     <img class="image" src="{{photoUrl}}">
@@ -209,22 +219,23 @@ if (document.title == "profile") {
                 </div>
                 </div>
                 `
-                let templateCode2=`
+            let templateCode2 = `
                 <div class="profilebox">
-                    <img src="${arr[l - 1].profilephoto}" class="profilephot">
-                    <p class="cardText" style="margin-left:3%;color:black;font-size:25px">Владелец аккаунта: ${arr[l - 1].login}</p>
+                    <img src="${arr[localStorage.getItem('length') - 1].profilephoto}" class="profilephot">
+                    <p class="cardText" style="margin-left:3%;color:black;font-size:25px">Владелец аккаунта: ${arr[localStorage.getItem('length') - 1].login}</p>
                 </div>`
-                let template = Handlebars.compile(templateCode);
-                let template2 = Handlebars.compile(templateCode2);
-                let productsContainer2 = document.querySelector('#boxb');
-                productsContainer2.innerHTML = '';
-                productsContainer2.innerHTML += template2();
-                for (let photo of arr2) {
-                    if (photo.userlogin == arr[l - 1].login) {
-                        productsContainer2.innerHTML += template(photo);
-                    }
+            let template = Handlebars.compile(templateCode);
+            let template2 = Handlebars.compile(templateCode2);
+            let productsContainer2 = document.querySelector('#boxb');
+            productsContainer2.innerHTML = '';
+            productsContainer2.innerHTML += template2();
+            
+            for (let photo of arr2) {
+                if (photo.userlogin == arr[localStorage.getItem('length') - 1].login) {
+                    productsContainer2.innerHTML += template(photo);
                 }
             }
+
         }
     })
 }

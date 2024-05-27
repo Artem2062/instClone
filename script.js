@@ -60,7 +60,11 @@ if (document.title == "add") {
             }
             newPhoto.userInformation = nameInput.value;
             newPhoto.photoUrl = urlInput.value;
-            newPhoto.userPhotoUrl = userPhotoInput.value;
+            if (userPhotoInput.value == "") {
+                    newPhoto.userPhotoUrl = "https://avatars.mds.yandex.net/i?id=eda580fc206e5b2c2681268b9e9cb61f09c54cc2-12617026-images-thumbs&n=13"
+                } else {
+                    newPhoto.userPhotoUrl = userPhotoInput.value;
+                }
             newPhoto.userText = userTextInput.value
             newPhoto.userlogin = arr[l - 1].login
             if (newPhoto.photoUrl == '') {
@@ -114,7 +118,11 @@ if (document.title == "register") {
                 newUser.name = akname.value;
                 newUser.login = aklogin.value;
                 newUser.password = akpassword.value;
-                newUser.photo = akphoto.value
+                if (akphoto.value == "") {
+                    newUser.photo = "https://avatars.mds.yandex.net/i?id=eda580fc206e5b2c2681268b9e9cb61f09c54cc2-12617026-images-thumbs&n=13"
+                } else {
+                    newUser.photo = akphoto.value
+                }
                 usersArr.push(newUser);
                 let xhrSenderr = new XMLHttpRequest();
                 xhrSenderr.open('PUT', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=2429f73afa9b592236f2c5d499e84272', true);

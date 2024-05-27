@@ -2,6 +2,10 @@
 let xhr = new XMLHttpRequest();
 xhr.open('GET', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=178d829c10f9998752f13ccbb645c37c', true);
 xhr.send();
+window.addEventListener('scroll', function () {
+    let w = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    scrollProgress.style.width = w + '%'
+})
 if (document.title == "main") {
     xhr.addEventListener('readystatechange', function () {
         if (xhr.readyState == 4) {

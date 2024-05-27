@@ -60,7 +60,11 @@ if (document.title == "add") {
             }
             newPhoto.userInformation = nameInput.value;
             newPhoto.photoUrl = urlInput.value;
-            newPhoto.userPhotoUrl = userPhotoInput.value;
+            if (userPhotoInput.value == "") {
+                    newPhoto.userPhotoUrl = "https://avatars.mds.yandex.net/i?id=eda580fc206e5b2c2681268b9e9cb61f09c54cc2-12617026-images-thumbs&n=13"
+                } else {
+                    newPhoto.userPhotoUrl = userPhotoInput.value
+                }
             newPhoto.userText = userTextInput.value
             newPhoto.userlogin = arr[l - 1].login
             if (newPhoto.photoUrl == '') {

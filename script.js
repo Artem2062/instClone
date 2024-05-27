@@ -66,7 +66,7 @@ if (document.title == "add") {
             if (newPhoto.photoUrl == '') {
                 alert('Ошибка отправки. Попробуйте еще раз.');
             }
-            if (localStorage.getItem('enter' == 1)) {
+            if (localStorage.getItem('enter')==1) {
                 photosArr.push(newPhoto);
                 let xhrSender = new XMLHttpRequest();
                 xhrSender.open('PUT', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=178d829c10f9998752f13ccbb645c37c', true);

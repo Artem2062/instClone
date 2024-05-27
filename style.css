@@ -144,3 +144,10 @@ ul{
     align-items: center;
     padding-left: 5%;
 }
+.scrollProgress{
+    height: 3px;
+    position: fixed;
+    margin-top: 0;
+    z-index: 3;
+    background-color: red;
+}

@@ -61,7 +61,8 @@ if (document.title == "add") {
             newPhoto.userlogin = arr[l - 1].login
             if (newPhoto.photoUrl == '') {
                 alert('Ошибка отправки. Попробуйте еще раз.');
-            } else {
+            }
+            if (localStorage.getItem('enter' == 1)) {
                 photosArr.push(newPhoto);
                 let xhrSender = new XMLHttpRequest();
                 xhrSender.open('PUT', 'https://studyprograms.informatics.ru/api/jsonstorage/?id=178d829c10f9998752f13ccbb645c37c', true);
@@ -76,9 +77,8 @@ if (document.title == "add") {
                         }
                     }
                 })
-            }
+            } else { alert('Ошибка отправки. Сначала войдите в аккаунт.'); }
         }
-
     });
 }
 let xhrr = new XMLHttpRequest();
@@ -188,6 +188,7 @@ if (document.title == "profile") {
             let arr2 = JSON.parse(xhr.responseText);
             if (localStorage.getItem('true') == 1) {
                 localStorage.clear()
+                localStorage.setItem('enter', 1)
                 localStorage.setItem('true', 0)
                 localStorage.setItem('length', arr.length)
             }

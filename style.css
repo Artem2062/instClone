@@ -152,3 +152,11 @@ ul{
     z-index: 3;
     background-color: red;
 }
+@media(min-width:1px)and (max-width:900px){
+    .box{
+        flex-direction: column;
+    }
+    .card{
+        width: 90%;
+    }
+}
